@@ -1,60 +1,23 @@
-﻿
 using System;
-using System.Text;
 
-class Program
+namespace Lab18
 {
-    // Введення та перевірка числа
-    static double InputDouble(string message)
+    class Program
     {
-        double value;
-
-        while (true)
+        static void Main(string[] args)
         {
-            Console.Write(message);
+            double x = 1.5, y = 0.1, z = 0.5;
 
-            if (double.TryParse(Console.ReadLine(), out value) &&
-                !double.IsNaN(value) &&
-                !double.IsInfinity(value))
-            {
-                return value;
-            }
+            double a = Math.Log10(Math.Abs(Math.Sin(x) + y)) / 87;
+            double b = 234 / Math.Log10(Math.Abs(Math.Sin(x * y) + 3));
+            double c = Math.Log10(Math.Abs(Math.Sin(3.1) + x * x * y)) / z;
 
-            Console.WriteLine("Помилка! Введіть коректне число.");
-        }
-    }
+            double S = a + b + c;
 
-    // Обчислення висоти м'яча
-    static double CalculateHeight(double y0, double v0, double g, double t)
-    {
-        return y0 + v0 * t - g * t * t / 2;
-    }
+            Console.WriteLine("x = " + x + ", y = " + y + ", z = " + z);
+            Console.WriteLine("S = " + S);
 
-    static void Main()
-    {
-        Console.OutputEncoding = Encoding.UTF8;
-        Console.InputEncoding = Encoding.UTF8;
-
-        Console.WriteLine("Варіант 7. Рух м'яча вертикально вгору");
-        Console.WriteLine();
-
-        double y0 = InputDouble("Початкова висота y0 (м) = ");
-        double v0 = InputDouble("Початкова швидкість v0 (м/с) = ");
-        double g = InputDouble("Прискорення вільного падіння g (м/с^2) = ");
-
-        if (g <= 0)
-        {
-            Console.WriteLine("Помилка: g має бути більшим за нуль.");
-            return;
-        }
-
-        Console.WriteLine();
-        Console.WriteLine("Результати обчислень:");
-
-        for (int t = 1; t <= 3; t++)
-        {
-            double y = CalculateHeight(y0, v0, g, t);
-            Console.WriteLine($"Через {t} с: y = {y:F2} м");
+            Console.ReadKey();
         }
     }
 }
